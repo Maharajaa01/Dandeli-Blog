@@ -11,6 +11,28 @@
    <link rel="stylesheet" href="assets/css/styles.css">
    
    <style>
+   body {
+   background-image: url('assets/img/new-hd.jpg'); /* Update the image path */
+   background-size: contain; /* Ensure the full image is visible */
+   background-position: center; /* Keep the image centered */
+   background-repeat: no-repeat; /* Prevent the image from repeating */
+   height: 100vh; /* Ensure the background covers the entire screen */
+   margin: 0; /* Remove any default margin */
+}
+
+html, body {
+   height: 100%; /* Ensure the body takes up full screen height */
+}
+
+@media (max-width: 768px) {
+   body {
+      background-size: contain; /* Keep the image fully visible on smaller screens */
+      background-position: center 7px; /* Ensure the image is centered */
+      
+   }
+}
+
+
       /* Styles for invalid input */
       .error {
          border: 2px solid red;
@@ -106,11 +128,29 @@
       font-size: 1.5rem;
    }
 }
+/* Hide the eye-on icon by default */
+.ri-eye-fill {
+   display: none;
+}
+
+/* Show the eye-off icon by default */
+.ri-eye-off-fill {
+   display: inline-block;
+}
+
+/* When the password is visible, show the eye-on icon and hide the eye-off icon */
+input[type="text"] + .login__icon.ri-eye {
+         display: inline-block;
+      }
+
+input[type="password"] + .login__icon.ri-eye-off-fill {
+   display: inline-block;
+}
 
 
    </style>
 
-   <title>Responsive Login</title>
+   <title>Dandeli Login</title>
 </head>
 <body>
    <!--=============== LOGIN ===============-->
@@ -147,7 +187,7 @@
     <div class="loading-animation">
        <img src="assets/img/cartoon.gif" alt="Loading Cartoon" class="loading-cartoon">
        <p class="loading-text">
-          Logging in... Please wait <span id="loggedInUser"></span> 
+          knjm Wait pannu da bodysoda.. <span id="loggedInUser"></span> ❤️
        </p>
     </div>
  </div>
@@ -158,23 +198,41 @@
       // Array of valid usernames
       const validUsers = [
          "prithisha",
-         "pavi",
+         "Pavi",
          "yuvan",
-         "sweatha",
-         "akshaya",
-         "dharshan",
-         "akilan",
-         "arjun"
+         "Sweatha",
+         "Akshaya",
+         "Dharshan",
+         "Akilan",
+         "Arjun",
+         "Sandeep"
       ];
 
       // Shared password for all users
-      const validPassword = "ILoveMahaRaja";
+      const validPassword = "LoveYouMahaRaja";
 
       // Elements
       const usernameInput = document.getElementById("username");
       const passwordInput = document.getElementById("password");
       const loginForm = document.getElementById("loginForm");
       const loadingScreen = document.getElementById("loadingScreen");
+
+
+
+      // Password visibility toggle
+      const passwordIcon = document.getElementById("loginPassword");
+
+      passwordIcon.addEventListener("click", function () {
+         if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            passwordIcon.classList.remove("ri-eye-off");
+            passwordIcon.classList.add("ri-eye");
+         } else {
+            passwordInput.type = "password";
+            passwordIcon.classList.remove("ri-eye");
+            passwordIcon.classList.add("ri-eye-off");
+         }
+      });
 
  // Form submission handler
 loginForm.addEventListener("submit", function (event) {
@@ -193,8 +251,8 @@ loginForm.addEventListener("submit", function (event) {
 
       // Redirect after 6 seconds
       setTimeout(() => {
-         window.location.href = "index.html";
-      }, 6000);
+         window.location.href = "login.html";
+      }, 3000);
    } else {
       // Add error class to inputs
       usernameInput.classList.add("error");
@@ -204,7 +262,7 @@ loginForm.addEventListener("submit", function (event) {
       setTimeout(() => {
          usernameInput.classList.remove("error");
          passwordInput.classList.remove("error");
-      }, 3500);
+      }, 2000);
    }
 });
 
