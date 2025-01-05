@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dandeli Trip 2025</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <link href="style.css" rel="stylesheet" >
+</head>
+<body>
+    <img src="images/new-logo-removebg-preview.png" class="logo">
+    <div class="container">
+        
+
+        <div class="content">
+            <p>Dandeli Memories Loading ...</p>
+            <h1>We're <span>Coming</span> Soon</h1>
+            <div class="launch-time">
+                         <div>
+                            <p id="days">00</p>
+                            <span>days</span>
+                         </div>
+                         <div > 
+                            <p id="hours">00</p>
+                           <span>Hours</span>
+                       </div>
+                       <div>
+                        <p id="minutes">00</p>
+                        <span>Minutes</span>
+                    </div>
+                    <div>
+                        <p id="seconds">00</p>
+                        <span>Seconds</span> 
+                    </div>
+
+
+
+    </div>
+    <button type="button" class="open" onclick="showPopup()">
+        Don't Click 
+        <img src="images/triangle.png" alt="">
+      </button>
+             <!-- Popup container -->
+           <div id="popup" class="popup-container">
+           <button class="close-btn" onclick="hidePopup()">X</button>
+           <img src="images/meme.jpg" alt="Popup Image" class="popup-image">
+  </div>
+        </div>
+        
+    </div>
+    <img src="images/rocket.png" alt="" class="rocket">
+
+
+    <script>
+        var tripDate = new Date("Jan 23, 2025 15:30:00").getTime();
+    
+        var x = setInterval(function () {
+            var now = new Date().getTime();
+            var distance = tripDate - now;
+    
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+            document.getElementById("days").innerHTML = days;
+            document.getElementById("hours").innerHTML = hours;
+            document.getElementById("minutes").innerHTML = minutes;
+            document.getElementById("seconds").innerHTML = seconds;
+    
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("days").innerHTML = "00";
+                document.getElementById("hours").innerHTML = "00";
+                document.getElementById("minutes").innerHTML = "00";
+                document.getElementById("seconds").innerHTML = "00";
+            }
+        }, 1000);
+
+
+        function showPopup() {
+      const popup = document.getElementById('popup');
+      popup.style.display = 'flex';
+    }
+
+    // Function to hide the popup
+    function hidePopup() {
+      const popup = document.getElementById('popup');
+      popup.style.display = 'none';
+    }
+    </script>
+    
+
+
+
+</body>
+</html>
