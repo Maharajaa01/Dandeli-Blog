@@ -197,7 +197,7 @@ input[type="password"] + .login__icon.ri-eye-off-fill {
    <script>
       // Array of valid usernames
       const validUsers = [
-         "prithisha",
+         "Prithisha",
          "Pavi",
          "yuvan",
          "Sweatha",
@@ -219,6 +219,14 @@ input[type="password"] + .login__icon.ri-eye-off-fill {
 
 
 
+       // Debugging: Log entered username and password
+
+
+   // Log the valid username and password for comparison
+   console.log("Valid Username Array: " + validUsers.join(", "));
+   console.log("Valid Password: " + validPassword);
+
+
       // Password visibility toggle
       const passwordIcon = document.getElementById("loginPassword");
 
@@ -238,9 +246,10 @@ input[type="password"] + .login__icon.ri-eye-off-fill {
 loginForm.addEventListener("submit", function (event) {
    event.preventDefault(); // Prevent default form submission
 
-   const username = usernameInput.value.trim().toLowerCase();
+   const username = usernameInput.value.trim();
    const password = passwordInput.value;
-
+   console.log("Entered Username: " + username);
+   console.log("Entered Password: " + password);
    // Validate username and password
    if (validUsers.includes(username) && password === validPassword) {
       // Show loading screen
