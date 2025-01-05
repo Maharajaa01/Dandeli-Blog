@@ -1,213 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-   <!--=============== REMIXICONS ===============-->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css">
-
-   <!--=============== CSS ===============-->
-   <link rel="stylesheet" href="assets/css/styles.css">
-   
-   <style>
-      /* Styles for invalid input */
-      .error {
-         border: 2px solid red;
-         animation: shake 0.35s;
-      }
-
-      @keyframes shake {
-         0% { transform: translateX(0); }
-         25% { transform: translateX(-5px); }
-         50% { transform: translateX(5px); }
-         75% { transform: translateX(-5px); }
-         100% { transform: translateX(0); }
-      }
-
- /* Updated Loading Screen Styles */
-.loading-screen {
-   position: fixed;
-   top: 0;
-   left: 0;
-   width: 100%;
-   height: 100%;
-   background: url('assets/img/cartoon.gif') center center / cover no-repeat;
-   background-size: 200%; /* Make the cartoon larger */
-   background-position: center; /* Center the cartoon */
-   background-repeat: no-repeat;
-   background-color: rgba(0, 0, 0, 0.8); /* Optional dark overlay */
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   color: white;
-   font-size: 1.5rem;
-   z-index: 1000;
-   visibility: hidden;
-   opacity: 0;
-   transition: visibility 0s, opacity 0.3s ease-in-out;
-}
-
-/* Show Loading Screen */
-.loading-screen.active {
-   visibility: visible;
-   opacity: 1;
-}
-
-/* Loading Animation and Overlay */
-.loading-animation {
-   text-align: center;
-   animation: fadeIn 2s infinite;
-   z-index: 2; /* Ensure text stays on top of background */
-   position: relative;
-}
-
-/* Text Styles */
-.loading-text {
-   font-size: 2rem; /* Adjust size for readability */
-   font-weight: bold;
-   color: #fff;
-   animation: bounce 1.5s infinite;
-   padding: 15px 25px;
-   background-color: rgba(0, 0, 0, 0.6); /* Add a semi-transparent background */
-   border-radius: 8px;
-   display: inline-block;
-}
-
-/* Keyframes for Bouncing Text */
-@keyframes bounce {
-   0%, 100% {
-      transform: translateY(0);
-   }
-   50% {
-      transform: translateY(-10px);
-   }
-}
-
-/* Keyframes for Fading */
-@keyframes fadeIn {
-   0% {
-      opacity: 0.5;
-   }
-   50% {
-      opacity: 1;
-   }
-   100% {
-      opacity: 0.5;
-   }
-}
-
-/* Responsive Design for Different Screens */
-@media (max-width: 768px) {
-   .loading-screen {
-      background-size: 250%; /* Increase size further for smaller screens */
-   }
-   .loading-text {
-      font-size: 1.5rem;
-   }
-}
-
-
-   </style>
-
-   <title>Responsive Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dandeli Trip 2025</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <link href="style.css" rel="stylesheet" >
 </head>
 <body>
-   <!--=============== LOGIN ===============-->
-   <div class="login container grid" id="loginAccessRegister">
-      <div class="login__access">
-         <h1 class="login__title">Log in to your account.</h1>
-         
-         <div class="login__area">
-            <form id="loginForm" class="login__form">
-               <div class="login__content grid">
-                  <div class="login__box">
-                     <input type="text" id="username" required placeholder=" " class="login__input">
-                     <label for="username" class="login__label">Username</label>
-         
-                     <i class="ri-user-fill login__icon"></i>
-                  </div>
-      
-                  <div class="login__box">
-                     <input type="password" id="password" required placeholder=" " class="login__input">
-                     <label for="password" class="login__label">Password</label>
-         
-                     <i class="ri-eye-off-fill login__icon login__password" id="loginPassword"></i>
-                  </div>
-               </div>
-      
-               <button type="submit" class="login__button">Login</button>
-            </form>
-         </div>
-      </div>
-   </div>
+    <img src="images/new-logo-removebg-preview.png" class="logo">
+    <div class="container">
+        
 
-   <!--=============== LOADING SCREEN ===============-->
-   <div class="loading-screen" id="loadingScreen">
-    <div class="loading-animation">
-       <img src="assets/img/cartoon.gif" alt="Loading Cartoon" class="loading-cartoon">
-       <p class="loading-text">
-          Logging in... Please wait <span id="loggedInUser"></span> 
-       </p>
+        <div class="content">
+            <p>Dandeli Memories Loading ...</p>
+            <h1>We're <span>Coming</span> Soon</h1>
+            <div class="launch-time">
+                         <div>
+                            <p id="days">00</p>
+                            <span>days</span>
+                         </div>
+                         <div > 
+                            <p id="hours">00</p>
+                           <span>Hours</span>
+                       </div>
+                       <div>
+                        <p id="minutes">00</p>
+                        <span>Minutes</span>
+                    </div>
+                    <div>
+                        <p id="seconds">00</p>
+                        <span>Seconds</span> 
+                    </div>
+
+
+
     </div>
- </div>
- 
+    <button type="button" class="open" onclick="showPopup()">
+        Don't Click 
+        <img src="images/triangle.png" alt="">
+      </button>
+             <!-- Popup container -->
+           <div id="popup" class="popup-container">
+           <button class="close-btn" onclick="hidePopup()">X</button>
+           <img src="images/meme.jpg" alt="Popup Image" class="popup-image">
+  </div>
+        </div>
+        
+    </div>
+    <img src="images/rocket.png" alt="" class="rocket">
 
-   <!--=============== MAIN JS ===============-->
-   <script>
-      // Array of valid usernames
-      const validUsers = [
-         "prithisha",
-         "pavi",
-         "yuvan",
-         "sweatha",
-         "akshaya",
-         "dharshan",
-         "akilan",
-         "arjun"
-      ];
 
-      // Shared password for all users
-      const validPassword = "ILoveMahaRaja";
+    <script>
+        var tripDate = new Date("Jan 23, 2025 15:30:00").getTime();
+    
+        var x = setInterval(function () {
+            var now = new Date().getTime();
+            var distance = tripDate - now;
+    
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+            document.getElementById("days").innerHTML = days;
+            document.getElementById("hours").innerHTML = hours;
+            document.getElementById("minutes").innerHTML = minutes;
+            document.getElementById("seconds").innerHTML = seconds;
+    
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("days").innerHTML = "00";
+                document.getElementById("hours").innerHTML = "00";
+                document.getElementById("minutes").innerHTML = "00";
+                document.getElementById("seconds").innerHTML = "00";
+            }
+        }, 1000);
 
-      // Elements
-      const usernameInput = document.getElementById("username");
-      const passwordInput = document.getElementById("password");
-      const loginForm = document.getElementById("loginForm");
-      const loadingScreen = document.getElementById("loadingScreen");
 
- // Form submission handler
-loginForm.addEventListener("submit", function (event) {
-   event.preventDefault(); // Prevent default form submission
+        function showPopup() {
+      const popup = document.getElementById('popup');
+      popup.style.display = 'flex';
+    }
 
-   const username = usernameInput.value.trim().toLowerCase();
-   const password = passwordInput.value;
+    // Function to hide the popup
+    function hidePopup() {
+      const popup = document.getElementById('popup');
+      popup.style.display = 'none';
+    }
+    </script>
+    
 
-   // Validate username and password
-   if (validUsers.includes(username) && password === validPassword) {
-      // Show loading screen
-      const loggedInUser = document.getElementById("loggedInUser");
-      loggedInUser.textContent = username; // Set the username dynamically
 
-      loadingScreen.classList.add("active");
 
-      // Redirect after 6 seconds
-      setTimeout(() => {
-         window.location.href = "index.html";
-      }, 6000);
-   } else {
-      // Add error class to inputs
-      usernameInput.classList.add("error");
-      passwordInput.classList.add("error");
-
-      // Remove error class after 3.5 seconds
-      setTimeout(() => {
-         usernameInput.classList.remove("error");
-         passwordInput.classList.remove("error");
-      }, 3500);
-   }
-});
-
-   </script>
 </body>
 </html>
